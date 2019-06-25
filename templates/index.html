@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>index</title>
+</head>
+
+<body>
+    <h1>Controle de Estoque</h1>
+
+
+    <a href="{{ url_for('produtos') }}">
+        <h2>Produtos</h2>
+    </a>
+
+    <a href="{{ url_for('novo_produto', erro_nome='nao') }}">
+        <h2>Novo Produto</h2>
+    </a>
+
+    <a href="{{ url_for('produtos_faltando') }}">
+        <h2>Produtos em falta</h2>
+    </a>
+
+    <a href="{{ url_for('produtos_faltando') }}">
+        <h2>Produtos em falta</h2>
+    </a>
+
+</body>
+
+</html>

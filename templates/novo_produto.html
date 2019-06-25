@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Novo Produto</title>
+</head>
+
+<body>
+    <form name="form" action="{{ url_for('criar_produto') }}" method="POST" enctype="multipart/form-data">
+        <div>
+            <label for="nome">Nome:</label>
+            <input type="text" required name="nome" id="nome">
+        </div>
+        <br>
+        <div>
+            <label for="valor_compra">Valor de Compra:</label>
+            <input type="number" required name="valor_compra" id="valor_compra">
+        </div>
+        <br>
+        <div>
+            <label for="valor_venda">Valor de Venda:</label>
+            <input type="number" required name="valor_venda" id="valor_venda">
+        </div>
+        <br>
+        <div>
+            <label for="quantidade_estoque">Quantidade em Estoque:</label>
+            <input type="number" required name="quantidade_estoque" id="quantidade_estoque">
+        </div>
+        <br>
+        <div>
+            <label for="quantidade_ideal">Quantidade Ideal:</label>
+            <input type="number" required name="quantidade_ideal" id="quantidade_ideal">
+        </div>
+        <div>
+            <input name="confirmar" disabled="disabled" type="submit">
+        </div>
+    </form>
+</body>
+
+</html>

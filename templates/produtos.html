@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Produtos</title>
+</head>
+
+<body>
+    <table>
+        <caption>Produtos</caption>
+        <tr>
+            <td>ID</td>
+            <td>Nome</td>
+            <td>Valor de Compra</td>
+            <td>Valor de Venda</td>
+            <td>Quantidade em Estoque</td>
+            <td>Quantidade Ideal</td>
+            <td>ALTERAR</td>
+            <td>REMOVER</td>
+        </tr>
+        {% for produto in produtos %}
+        <tr>
+            <td>{{ produto.id }}</td>
+            <td>{{ produto.nome }}</td>
+            <td>{{ produto.valor_compra }}</td>
+            <td>{{ produto.valor_venda }}</td>
+            <td>{{ produto.quantidade_estoque }}</td>
+            <td>{{ produto.quantidade_ideal }}</td>
+            <td><a href="{{ url_for('alterar_produto', id=produto.id)}}">mudar</a></td>
+            <td><a href="{{ url_for('excluir_produto', id=produto.id)}}">apagar</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+</body>
+
+</html>
