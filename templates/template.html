@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='template.css')}}">
+    {% block import_css %}{% endblock %}
+    
+</head>
+
+<body>
+
+<header class="top-header">
+    <nav class="menu">
+        <ul class="options">
+            <div class="list">
+                <li><a href="{{ url_for('produtos') }}">Produtos</a></li>
+                <li><a href="{{ url_for('novo_produto', erro_nome='nao')}}">Adicionar produto</a></li>
+                <li><a href="{{ url_for('produtos_faltando')}}">Produtos em falta</a></li>
+            </div>
+        </ul>
+    </nav>
+    <h1>{% block h1 %}{% endblock %}</h1>
+</header>
+{% block conteudo %}
+
+{% endblock %}
+
+</body>
+</html>
