@@ -1,0 +1,43 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+h1{
+    margin: 2% 0 0 2%;
+}
+.menu{
+    /* margin: 2% 0 0 0; */
+    
+    width: 100%;
+}
+.top-header{
+    margin-top:0;
+}
+.list{
+    text-align: right;
+    margin-right: 10px;
+}
+.options{
+    padding: 2%;
+    background: #f1f1f1;
+}
+.options, .options a{
+    list-style: none;
+    text-decoration: none;
+}
+.options li{
+    display: inline-block;
+    padding: 0 .5em 0 .5em;
+}
+.options a{
+    padding: 1em;
+    border-radius: .3em;
+    font-size: 1.1em;
+    color: #fff;
+    background: #0fa3e7;
+    transition: background.3s;
+}
+.options a:hover{
+    background: #12b4ff;
+}
