@@ -1,45 +1,41 @@
-<!DOCTYPE html>
-<html>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Novo Produto</title>
-</head>
+{% extends "template.html" %}
+{% block title %}Olá{% endblock %}
+{% block h1 %}Controle de Estoque{% endblock %}
+{% block conteudo%}
 
-<body>
-    <form name="form" action="{{ url_for('modificar') }}" method="POST" enctype="multipart/form-data">
-        <input type="hidden" value="{{ produto.id }}" name="id" id="id">
-        <div>
-            <label for="nome">Nome:</label>
-            <input type="text" value="{{ produto.nome }}" onchange="validar_formulario()" name="nome" id="nome">
-        </div>
-        <br>
-        <div>
-            <label for="valor_compra">Valor de Compra:</label>
-            <input type="number" value="{{ produto.valor_compra }}" onchange="validar_formulario()" name="valor_compra" id="valor_compra">
-        </div>
-        <br>
-        <div>
-            <label for="valor_venda">Valor de Venda:</label>
-            <input type="number" value="{{ produto.valor_venda }}" onchange="validar_formulario()" name="valor_venda" id="valor_venda">
-        </div>
-        <br>
-        <div>
-            <label for="quantidade_estoque">Quantidade em Estoque:</label>
-            <input type="number" value="{{ produto.quantidade_estoque }}" onchange="validar_formulario()" name="quantidade_estoque" id="quantidade_estoque">
-        </div>
-        <br>
-        <div>
-            <label for="quantidade_ideal">Quantidade Ideal:</label>
-            <input type="number" value="{{ produto.quantidade_ideal }}" onchange="validar_formulario()" name="quantidade_ideal" id="quantidade_ideal">
-        </div>
-        <div>
-            <input name="confirmar" type="submit">
-        </div>
-    </form>
+
+
+<form name="form" action="{{ url_for('modificar') }}" method="POST" enctype="multipart/form-data">
+    <input type="hidden" value="{{ produto.id }}" name="id" id="id">
+    <div>
+        <label for="nome">Nome:</label>
+        <input type="text" value="{{ produto.nome }}" onchange="validar_formulario()" name="nome" id="nome">
+    </div>
+    <br>
+    <div>
+        <label for="valor_compra">Valor de Compra:</label>
+        <input type="number" value="{{ produto.valor_compra }}" onchange="validar_formulario()" name="valor_compra" id="valor_compra">
+    </div>
+    <br>
+    <div>
+        <label for="valor_venda">Valor de Venda:</label>
+        <input type="number" value="{{ produto.valor_venda }}" onchange="validar_formulario()" name="valor_venda" id="valor_venda">
+    </div>
+    <br>
+    <div>
+        <label for="quantidade_estoque">Quantidade em Estoque:</label>
+        <input type="number" value="{{ produto.quantidade_estoque }}" onchange="validar_formulario()" name="quantidade_estoque" id="quantidade_estoque">
+    </div>
+    <br>
+    <div>
+        <label for="quantidade_ideal">Quantidade Ideal:</label>
+        <input type="number" value="{{ produto.quantidade_ideal }}" onchange="validar_formulario()" name="quantidade_ideal" id="quantidade_ideal">
+    </div>
+    <div>
+        <input name="confirmar" type="submit">
+    </div>
+</form>
 <script type="text/javascript" src="{{ url_for('static', filename='validar_formulario.js') }}"></script>
-</body>
 
-</html>
+{% endblock %}
