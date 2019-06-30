@@ -84,3 +84,15 @@ def excluir_produto(id):
     db.session.delete(produto_para_remover)
     db.session.commit()
     return redirect(url_for('produtos'))
+
+@app.route('/venda')
+def venda():
+    produtos = Estoque.query.all()
+    return render_template('venda.html', produtos=produtos)
+
+@app.route('/finalizar_venda', methods=['POST'])
+def finalizar_venda():
+    produto = request.form['produto_vendido']
+    quantidade = request.form['quantidade_vendida']
+    print('produto = ', produto, '\n', 'quantidade =', quantidade, '\n')
+    return redirect(url_for('produtos'))

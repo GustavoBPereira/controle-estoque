@@ -1,0 +1,18 @@
+
+{% extends "template.html" %}
+{% block title %}Olá{% endblock %}
+{% block conteudo%}
+<div id="quantidade_de_produtos">
+    <label for="quantidade_de_produtos">Quantidade de produtos vendidos</label>
+    <input type="number" name="quantidade_de_produtos" id="quantidade_de_produtos">
+    <input type="submit" name="quantidade_itens" id="quantidade_itens" onclick="criar_form()">
+</div>
+<br>
+
+<div id="form_princial">
+    
+</div>
+
+<script src="{{ url_for('static', filename='quantidade_form.js') }}"></script>
+
+{% endblock %}
