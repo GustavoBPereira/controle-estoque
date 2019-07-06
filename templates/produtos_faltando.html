@@ -1,26 +1,38 @@
 {% extends "template.html" %}
-{% block title %}MUDAR{% endblock %}
-{% block h1 %}MUDAR{% endblock %}
+{% block title %}Produtos em Falta{% endblock %}
+{% block import_css %}<link rel="stylesheet" href="{{ url_for('static', filename='tabelas.css')}}">{% endblock %}
+{% block h1 %}Produtos em Falta{% endblock %}
 {% block conteudo%}
-<table>
-        <caption>Produtos</caption>
-        <tr>
-            <td>ID</td>
-            <td>Nome</td>
-            <td>Valor de Compra</td>
-            <td>Valor de Venda</td>
-            <td>Quantidade em Estoque</td>
-            <td>Quantidade Ideal</td>
-        </tr>
-        {% for produto in produtos %}
-        <tr>
-            <td>{{ produto.id }}</td>
-            <td>{{ produto.nome }}</td>
-            <td>{{ produto.valor_compra }}</td>
-            <td>{{ produto.valor_venda }}</td>
-            <td>{{ produto.quantidade_estoque }}</td>
-            <td>{{ produto.quantidade_ideal }}</td>
-        </tr>
-        {% endfor %}
-</table>
+<div class="container">
+
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Valor de Compra</th>
+                <th scope="col">Valor de Venda</th>
+                <th scope="col">Quantidade em Estoque</th>
+                <th scope="col">Quantidade Mínima</th>
+                <th scope="col">ALTERAR</th>
+                <th scope="col">REMOVER</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for produto in produtos %}
+            <tr>
+                <th scope="row">{{ produto.id }}</th>
+                <th>{{ produto.nome }}</th>
+                <th>{{ produto.valor_compra }}</th>
+                <th>{{ produto.valor_venda }}</th>
+                <th>{{ produto.quantidade_estoque }}</th>
+                <th>{{ produto.quantidade_minima }}</th>
+                <th><a href="{{ url_for('alterar_produto', id=produto.id)}}"><img src="{{ url_for('static', filename='editar.png') }}"></a></th>
+                <th><a href="{{ url_for('excluir_produto', id=produto.id)}}"><img src="{{ url_for('static', filename='remover.png') }}"></a></th>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
 {% endblock %}

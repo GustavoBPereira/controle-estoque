@@ -1,14 +1,14 @@
 
 {% extends "template.html" %}
-{% block title %}Venda de Produtos{% endblock %}
-{% block h1 %}Venda de Produtos{% endblock %}
+{% block title %}Reestoque{% endblock %}
+{% block h1 %}Reestoque de Produtos{% endblock %}
 
 {% block conteudo%}
 <div class="container" style="border-style: solid; border-color: #dee2e6; margin-top: -0.3%; padding-top: 1%; padding-bottom: 1%;">
 
     <div class="form-group">
-        <label for="produto_vendido">PRODUTO</label>
-        <input class="form-control" list="produtos" name="produto_vendido" id="produto_vendido" required>
+        <label for="produto_adicionado">PRODUTO</label>
+        <input class="form-control" list="produtos" name="produto_adicionado" id="produto_adicionado" required>
         <datalist id="produtos">
             {% for produto in produtos %}
                 <option value="{{ produto.nome }}">
@@ -17,12 +17,12 @@
     </div>
 
     <div class="form-group">
-        <label for="quantidade">QUANTIDADE VENDIDA</label>
-        <input class="form-control" type="number" name="quantidade_vendida" id="quantidade_vendida" required>
+        <label for="quantidade_adicionada">QUANTIDADE ADICIONADA</label>
+        <input class="form-control" type="number" name="quantidade_adicionada" id="quantidade_adicionada" required>
     </div>
 
     <div class="form-group">
-        <button type="submit" class="btn btn-primary" onclick="adicionarItem(produto_vendido.value, quantidade_vendida.value)">Adicionar Item</button>
+        <button type="submit" class="btn btn-primary" onclick="adicionarItem(produto_adicionado.value, quantidade_adicionada.value)">Adicionar Item</button>
     </div>
 </div>
 
@@ -31,7 +31,7 @@
         <thead class="thead-dark">
             <tr>
                 <th scope="col">Produto</th>
-                <th scope="col">Quantidade Vendida</th>
+                <th scope="col">Quantidade Adicionada</th>
             </tr>
         </thead>
         <tbody id="lista-itens">
@@ -41,12 +41,12 @@
 </div> 
 
 <div class="container">
-    <form name="form" action="{{ url_for('finalizar_venda') }}" method="POST" id="form-itens" enctype="multipart/form-data">
+    <form name="form" action="{{ url_for('compra') }}" method="POST" id="form-itens" enctype="multipart/form-data">
         <input type="hidden" name="quantidade_itens" id="quantidade_itens" value="0">
         <input type="hidden" name="lista_de_itens" id="lista_de_itens">
         <button type="submit" class="btn btn-lg btn-danger" style="margin-left: 0;">Confirmar Venda</button>        
     </form>
 </div>
-<script src="{{ url_for('static', filename='venda.js') }}"></script>
+<script src="{{ url_for('static', filename='reestoque.js') }}"></script>
 
 {% endblock %}

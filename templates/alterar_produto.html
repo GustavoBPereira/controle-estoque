@@ -1,41 +1,34 @@
-
 {% extends "template.html" %}
-{% block title %}Olá{% endblock %}
-{% block h1 %}Controle de Estoque{% endblock %}
+{% block title %}Novo Produto{% endblock %}
+{% block h1 %}Criar um novo produto{% endblock %}
 {% block conteudo%}
+<div class="container" style="border-style: solid; border-color: #dee2e6; margin-top: -0.3%; padding-top: 1%; padding-bottom: 1%;">
 
-
-
-<form name="form" action="{{ url_for('modificar') }}" method="POST" enctype="multipart/form-data">
-    <input type="hidden" value="{{ produto.id }}" name="id" id="id">
-    <div>
-        <label for="nome">Nome:</label>
-        <input type="text" value="{{ produto.nome }}" onchange="validar_formulario()" name="nome" id="nome">
-    </div>
-    <br>
-    <div>
-        <label for="valor_compra">Valor de Compra:</label>
-        <input type="number" value="{{ produto.valor_compra }}" onchange="validar_formulario()" name="valor_compra" id="valor_compra">
-    </div>
-    <br>
-    <div>
-        <label for="valor_venda">Valor de Venda:</label>
-        <input type="number" value="{{ produto.valor_venda }}" onchange="validar_formulario()" name="valor_venda" id="valor_venda">
-    </div>
-    <br>
-    <div>
-        <label for="quantidade_estoque">Quantidade em Estoque:</label>
-        <input type="number" value="{{ produto.quantidade_estoque }}" onchange="validar_formulario()" name="quantidade_estoque" id="quantidade_estoque">
-    </div>
-    <br>
-    <div>
-        <label for="quantidade_ideal">Quantidade Ideal:</label>
-        <input type="number" value="{{ produto.quantidade_ideal }}" onchange="validar_formulario()" name="quantidade_ideal" id="quantidade_ideal">
-    </div>
-    <div>
-        <input name="confirmar" type="submit">
-    </div>
-</form>
-<script type="text/javascript" src="{{ url_for('static', filename='validar_formulario.js') }}"></script>
-
+    <form name="form" action="{{ url_for('modificar') }}" method="POST" enctype="multipart/form-data">
+        <input type="hidden" value="{{ produto.id }}" name="id" id="id">
+        <div class="form-group">
+            <label for="nome">Nome do Produto</label>
+            <input type="text" value="{{ produto.nome }}" required class="form-control" name="nome" id="nome">
+        </div>
+        <div class="form-group">
+            <label for="valor_compra">Valor de compra do Produto</label>
+            <input type="number" value="{{ produto.valor_compra }}"  required class="form-control" name="valor_compra" id="valor_compra">
+        </div>
+        <div class="form-group">
+            <label for="valor_venda">Valor de venda do Produto</label>
+            <input type="number" value="{{ produto.valor_venda }}" required class="form-control" name="valor_venda" id="valor_venda">
+        </div>
+        <div class="form-group">
+            <label for="quantidade_estoque">Quantidade do produto em estoque</label>
+            <input type="number" value="{{ produto.quantidade_estoque }}"  required class="form-control" name="quantidade_estoque" id="quantidade_estoque">
+        </div>
+        <div class="form-group">
+            <label for="quantidade_minima">Quantidade mínima para se ter do produto</label>
+            <input type="number" value="{{ produto.quantidade_minima }}" required class="form-control" name="quantidade_minima" id="quantidade_minima">
+        </div>
+        <div class="mx-auto" style="width: 200px;">
+            <button type="submit" class="btn btn-primary btn-lg">Confirmar</button>
+        </div>
+    </form>
+</div>
 {% endblock %}

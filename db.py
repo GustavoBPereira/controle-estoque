@@ -11,4 +11,4 @@ class Estoque(db.Model):
     valor_compra = db.Column(db.Text)
     valor_venda = db.Column(db.Text)
     quantidade_estoque = db.Column(db.Text)
-    quantidade_ideal = db.Column(db.Text)
+    quantidade_minima = db.Column(db.Text)

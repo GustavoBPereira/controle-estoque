@@ -1,4 +1,4 @@
-from flask import render_template, url_for, request, redirect
+from flask import render_template, url_for, request, redirect, flash
 from sqlalchemy.exc import IntegrityError
 
 from config import app
@@ -11,17 +11,17 @@ def index():
 
 @app.route('/produtos')
 def produtos():
-    produtos = Estoque.query.all()
+    produtos = Estoque.query.order_by(Estoque.nome).all()
     return render_template('produtos.html', produtos=produtos)
 
 
 @app.route('/produtos_faltando')
 def produtos_faltando():
-    produtos = Estoque.query.all()
+    produtos = Estoque.query.order_by(Estoque.nome).all()
     produtos_em_falta = []
 
     for produto in produtos:
-        if int(produto.quantidade_estoque) < int(produto.quantidade_ideal):
+        if int(produto.quantidade_estoque) < int(produto.quantidade_minima):
             produtos_em_falta.append(produto)
 
     return render_template('produtos_faltando.html', produtos=produtos_em_falta)
@@ -42,11 +42,11 @@ def criar_produto():
     valor_compra = request.form['valor_compra']
     valor_venda = request.form['valor_venda']
     quantidade_estoque = request.form['quantidade_estoque']
-    quantidade_ideal = request.form['quantidade_ideal']
+    quantidade_minima = request.form['quantidade_minima']
 
     novo_produto = Estoque(
         nome=nome, valor_compra=valor_compra, valor_venda=valor_venda, 
-        quantidade_estoque=quantidade_estoque, quantidade_ideal=quantidade_ideal)
+        quantidade_estoque=quantidade_estoque, quantidade_minima=quantidade_minima)
     try:
         db.session.add(novo_produto)
         db.session.commit()
@@ -69,7 +69,7 @@ def modificar():
     produto_para_modificar.valor_compra = request.form['valor_compra']
     produto_para_modificar.valor_venda = request.form['valor_venda']
     produto_para_modificar.quantidade_estoque = request.form['quantidade_estoque']
-    produto_para_modificar.quantidade_ideal = request.form['quantidade_ideal']
+    produto_para_modificar.quantidade_minima = request.form['quantidade_minima']
 
     db.session.add(produto_para_modificar)
     db.session.commit()
@@ -92,7 +92,31 @@ def venda():
 
 @app.route('/finalizar_venda', methods=['POST'])
 def finalizar_venda():
-    produto = request.form['produto_vendido']
-    quantidade = request.form['quantidade_vendida']
-    print('produto = ', produto, '\n', 'quantidade =', quantidade, '\n')
+    lista_venda = request.form['lista_de_itens'].split(',')
+    #[produto] = nome do produto, [produto+1] = quantidade vendida do produto...
+    for produto in range(0,len(lista_venda), 2):
+        produto_para_vender = Estoque.query.filter_by(nome=lista_venda[produto]).first()
+        if produto_para_vender is not None: 
+            if int(produto_para_vender.quantidade_estoque) >= int(lista_venda[produto+1]):
+                produto_para_vender.quantidade_estoque =  str(int(produto_para_vender.quantidade_estoque)-int(lista_venda[produto+1]))
+                db.session.add(produto_para_vender)
+                db.session.commit()
+        
+    return redirect(url_for('produtos'))
+
+@app.route('/reestoque')
+def reestoque():
+    produtos = Estoque.query.all()
+    return render_template('reestoque.html', produtos=produtos)
+
+@app.route('/compra', methods=['post'])
+def compra():
+    lista_venda = request.form['lista_de_itens'].split(',')
+    #[produto] = nome do produto, [produto+1] = quantidade adicionada do produto...
+    for produto in range(0,len(lista_venda), 2):
+        produto_para_adicionar = Estoque.query.filter_by(nome=lista_venda[produto]).first()
+        if produto_para_adicionar is not None: 
+            produto_para_adicionar.quantidade_estoque = str(int(lista_venda[produto+1]) + int(produto_para_adicionar.quantidade_estoque))
+            db.session.add(produto_para_adicionar)
+            db.session.commit()
     return redirect(url_for('produtos'))

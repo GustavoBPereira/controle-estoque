@@ -5,27 +5,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.png') }}" />
     <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css')}}">
     <link rel="stylesheet" href="{{ url_for('static', filename='template.css')}}">
     {% block import_css %}{% endblock %}
-    
 </head>
 
 <body>
+<div class="container">
+    <div class="btn-group" role="group" aria-label="Grupo de botões para navegar na aplicação">
+        <a href="{{ url_for('produtos') }}"><button type="button" class="btn btn-primary btn-lg nav-app">Todos Produtos</button></a>
+        <a href="{{ url_for('novo_produto', erro_nome='nao') }}"><button type="button" class="btn btn-primary btn-lg nav-app">Adicionar Produto</button></a>
+        <a href="{{ url_for('produtos_faltando') }}"><button type="button" class="btn btn-primary btn-lg nav-app">Produtos em Falta</button></a>
+        <a href="{{ url_for('venda') }}"><button type="button" class="btn btn-primary btn-lg nav-app">Venda de Produtos</button></a>
+        <a href="{{ url_for('reestoque') }}"><button type="button" class="btn btn-primary btn-lg nav-app">Fazer Reestoque</button></a>
+    </div>
+</div>
+<h1>{% block h1 %}{% endblock %}</h1>
 
-<header class="top-header">
-    <nav class="menu">
-        <ul class="options">
-            <div class="list">
-                <li><a href="{{ url_for('produtos') }}">Produtos</a></li>
-                <li><a href="{{ url_for('novo_produto', erro_nome='nao')}}">Adicionar produto</a></li>
-                <li><a href="{{ url_for('produtos_faltando')}}">Produtos em falta</a></li>
-                <li><a href="{{ url_for('venda')}}">Venda de produtos</a></li>
-            </div>
-        </ul>
-    </nav>
-    <h1>{% block h1 %}{% endblock %}</h1>
-</header>
 {% block conteudo %}
 
 {% endblock %}
