@@ -32,6 +32,7 @@
             <tr>
                 <th scope="col">Produto</th>
                 <th scope="col">Quantidade Adicionada</th>
+                <th scope="col">Retirar</th>
             </tr>
         </thead>
         <tbody id="lista-itens">
@@ -42,7 +43,7 @@
 
 <div class="container">
     <form name="form" action="{{ url_for('compra') }}" method="POST" id="form-itens" enctype="multipart/form-data">
-        <input type="hidden" name="quantidade_itens" id="quantidade_itens" value="0">
+        <input type="hidden" name="ultimo_item" id="ultimo_item" value="0">
         <input type="hidden" name="lista_de_itens" id="lista_de_itens">
         <button type="submit" class="btn btn-lg btn-danger" style="margin-left: 0;">Confirmar Venda</button>        
     </form>

@@ -7,11 +7,37 @@ function adicionarItem(nome, quantidade) {
         lista_itens.push([nome, quantidade])
         document.querySelector('input#lista_de_itens').value = lista_itens;
 
-        let quantidade_itens = parseInt(document.querySelector('input#quantidade_itens').value) + 1;
+        colocarNaTabela(nome, quantidade);
+        limparFormulario();
 
-        document.querySelector('input#quantidade_itens').value = quantidade_itens.toString();
-        document.querySelector('tbody#lista-itens').innerHTML += '<tr id=' +'item-'+quantidade_itens.toString()+ '><th scope="row">' + nome + '</th><th>' + quantidade + '</th></tr>';
-        document.querySelector('input#produto_adicionado').value = '';
-        document.querySelector('input#quantidade_adicionada').value = '';
+
+
     }
+}
+
+function limparFormulario(){
+    document.querySelector('input#produto_adicionado').value = '';
+    document.querySelector('input#quantidade_adicionada').value = '';
+}
+
+function colocarNaTabela(nome, quantidade){
+    let ultimo_item = parseInt(document.querySelector('input#ultimo_item').value) + 1;
+
+    document.querySelector('input#ultimo_item').value = ultimo_item.toString();
+
+    document.querySelector('tbody#lista-itens').innerHTML += '<tr id=item-'+ultimo_item.toString()+
+                                                                '><th scope="row">' + nome + '</th>'+
+                                                                '<th>' + quantidade + '</th>'+
+                                                                '<th><button id='+ultimo_item.toString()+' onclick="removerItem(this.id)"><img src="static/remover.png"></button></th>'+
+                                                             '</tr>';
+}
+
+
+function removerItem(id_produto){
+    // remover do front
+    document.querySelector('tr#item-'+id_produto).remove();
+
+    // remover da lista
+    lista_itens.splice(parseInt(id_produto)-1, 1, []);
+    document.querySelector('input#lista_de_itens').value = lista_itens;
 }

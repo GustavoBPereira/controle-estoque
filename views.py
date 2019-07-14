@@ -93,6 +93,10 @@ def venda():
 @app.route('/finalizar_venda', methods=['POST'])
 def finalizar_venda():
     lista_venda = request.form['lista_de_itens'].split(',')
+    for elemento in lista_venda:
+        if elemento == '':
+            lista_venda.remove(elemento)
+
     #[produto] = nome do produto, [produto+1] = quantidade vendida do produto...
     for produto in range(0,len(lista_venda), 2):
         produto_para_vender = Estoque.query.filter_by(nome=lista_venda[produto]).first()
@@ -111,12 +115,15 @@ def reestoque():
 
 @app.route('/compra', methods=['post'])
 def compra():
-    lista_venda = request.form['lista_de_itens'].split(',')
+    lista_compra = request.form['lista_de_itens'].split(',')
+    for elemento in lista_compra:
+        if elemento == '':
+            lista_compra.remove(elemento)
     #[produto] = nome do produto, [produto+1] = quantidade adicionada do produto...
-    for produto in range(0,len(lista_venda), 2):
-        produto_para_adicionar = Estoque.query.filter_by(nome=lista_venda[produto]).first()
+    for produto in range(0,len(lista_compra), 2):
+        produto_para_adicionar = Estoque.query.filter_by(nome=lista_compra[produto]).first()
         if produto_para_adicionar is not None: 
-            produto_para_adicionar.quantidade_estoque = str(int(lista_venda[produto+1]) + int(produto_para_adicionar.quantidade_estoque))
+            produto_para_adicionar.quantidade_estoque = str(int(lista_compra[produto+1]) + int(produto_para_adicionar.quantidade_estoque))
             db.session.add(produto_para_adicionar)
             db.session.commit()
     return redirect(url_for('produtos'))
