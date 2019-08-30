@@ -1,7 +1,7 @@
 # controle-estoque
 
 ### Sistema de controle de estoque que criei para ajudar a visualização de um estoque.
-### Foi feito para uma dono de um loja de materiais de construcão que estava tendo dificuldades em descobrir quais de seus produtos que estavam em falta ou prestes a acabar.
+### Foi feito para uma dono de um loja de materiais de construcão que estava tendo dificuldades em descobrir quais de seus produtos estavam em falta ou prestes a acabar.
 
 ---
 ## Adicionando um produto
@@ -19,6 +19,5 @@
 ## Consultando os produtos em falta
 
 ![missing_products](https://user-images.githubusercontent.com/40372649/64055025-69923800-cb60-11e9-91a6-dd3ac8c5431e.png)
-
 
 ### Aqui é feita a verificação se um determinado produto tem a sua quantidade em estoque maior que a quantidade mínima.
