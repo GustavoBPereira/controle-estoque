@@ -1,7 +1,7 @@
 # controle-estoque
 
 ### Sistema de controle de estoque que criei para ajudar a visualização de um estoque.
-### Foi feito para uma dono de um loja de materiais de construcão que estava tendo dificuldades em descobrir quais de seus produtos estavam em falta ou prestes a acabar.
+### Foi feito para um dono de uma loja de materiais de construcão que estava tendo dificuldades em descobrir quais de seus produtos estavam em falta ou prestes a acabar.
 
 ---
 ## Adicionando um produto
